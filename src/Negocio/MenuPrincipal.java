@@ -169,8 +169,13 @@ public class MenuPrincipal {
         tv.setPulgadas(pulgadas);
 
         System.out.println("Introduzca el tipo: ");
-        tv.setTipo(sc.nextLine());
-
+        
+        try {
+            tv.setTipo(sc.nextLine());
+        } catch (Exception e) {
+            System.err.println("Tipo de televisor INVÁLIDO");
+        }
+        
         return tv;
     }
 

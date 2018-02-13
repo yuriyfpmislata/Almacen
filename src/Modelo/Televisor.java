@@ -4,8 +4,15 @@ package Modelo;
 
 public class Televisor extends Electrodomestico {
 
+    public enum Tipo {
+        PLASMA,
+        LED,
+        LCD,
+        OLED
+    }
+    
     protected double pulgadas;
-    protected String tipo;
+    protected Tipo tipo;
     
 
     public Televisor() {
@@ -33,12 +40,12 @@ public class Televisor extends Electrodomestico {
         this.pulgadas = pulgadas;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipo(String tipo) {        
+        this.tipo = Tipo.valueOf(tipo.toUpperCase());
     }
 
 }
