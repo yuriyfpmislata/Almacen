@@ -228,16 +228,21 @@ public class MenuPrincipal {
 
                 opcionClientes = sc.nextInt();
                 if (opcionClientes == 1) {
-
+                    Cliente c = datosCliente();
+                    servicio.introducirCliente(c);
                 }
                 if (opcionClientes == 2) {
-
+                    System.out.println("Introduzca el número de cliente: ");
+                    int num = sc.nextInt();
+                    servicio.eliminarCliente(num);
                 }
                 if (opcionClientes == 3) {
-
+                    System.out.println("Introduzca el número de cliente: ");
+                    int ncliente = sc.nextInt();
+                    System.out.println(servicio.buscarCliente(ncliente));
                 }
                 if (opcionClientes == 4) {
-
+                    System.out.println(servicio.imprimirTodosClientes());
                 }
 
             } while (opcionClientes != 0);
@@ -246,6 +251,112 @@ public class MenuPrincipal {
             this.menuClientes();
         }
 
+    }
+
+    public Cliente datosCliente() {
+        Scanner sc = new Scanner(System.in);
+
+        Cliente cliente = null;
+
+        String nombre;
+        String razonSocial;
+
+        int opcion = -1;
+        do {
+            System.out.println("Introduzca el nombre: ");
+            nombre = sc.nextLine();
+
+            System.out.println("Introduzca razon social: ");
+            razonSocial = sc.nextLine();
+
+            System.out.println("Introduzca el tipo de cliente: ");
+            System.out.println("1. Particular");
+            System.out.println("2. Mayorista");
+
+            opcion = sc.nextInt();
+            if (opcion == 1) {
+                cliente = pedirParticular();
+            }
+            if (opcion == 2) {
+                cliente = pedirMayorista();
+            }
+            if (cliente != null) {
+                cliente.setNombre(nombre);
+                cliente.setRazonSocial(razonSocial);
+            }
+
+        } while (opcion != 1 && opcion != 2 && opcion != 3);
+
+        if (cliente != null) {
+            System.out.println("Creado cliente con ID: " + cliente.getIdCliente());
+        }
+
+        return cliente;
+    }
+
+    public Particular pedirParticular() {
+        Scanner sc = new Scanner(System.in);
+        String dni;
+
+        Particular particular = null;
+
+        System.out.println("Introduzca el DNI: ");
+        dni = sc.nextLine();
+
+        particular = new Particular();
+        particular.setDni(dni);
+
+        return particular;
+    }
+
+    public Mayorista pedirMayorista() {
+        Scanner sc = new Scanner(System.in);
+
+        String cif;
+        TipoMayorista tipoMayorista;
+        double descuento;
+
+        Mayorista mayorista = null;
+
+        System.out.println("Introduzca el CIF: ");
+        cif = sc.nextLine();
+        
+        tipoMayorista = pedirTipoMayorista();
+        
+        System.out.println("Introduzca el descuento: ");
+        descuento = Double.parseDouble(sc.nextLine());
+        
+        mayorista = new Mayorista();
+        mayorista.setCif(cif);
+        mayorista.setTipoMayorista(tipoMayorista);
+        mayorista.setDescuento(descuento);
+
+        return mayorista;
+    }
+
+    public Modelo.TipoMayorista pedirTipoMayorista() {
+        Modelo.TipoMayorista tipoMayorista = null;
+        
+        String opcion;
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            System.out.println("Introduzca el tipo de Mayorista");
+            System.out.println("1.Gran superfície");
+            System.out.println("2.Tienda");
+
+            opcion = sc.nextLine();
+
+        } while (!opcion.equals("1") && !opcion.equals("2"));
+
+        if (opcion.equals("1")) {
+            tipoMayorista = Modelo.TipoMayorista.GRAN_SUPERFICIE;
+        }
+        if (opcion.equals("2")) {
+            tipoMayorista = Modelo.TipoMayorista.TIENDA;
+        }
+        
+        return tipoMayorista;
     }
 
     private void menuVentas() {
