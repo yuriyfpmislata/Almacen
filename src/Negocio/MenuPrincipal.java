@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-
 public class MenuPrincipal {
 
     NegociosService servicio;
@@ -66,7 +65,7 @@ public class MenuPrincipal {
                 System.out.println("0. Salir del menu");
                 Scanner sc = new Scanner(System.in);
                 opcionProductos = sc.nextInt();
-                
+
                 if (opcionProductos == 1) {
                     Producto p = datosProducto();
                     servicio.introducirProducto(p);
@@ -169,13 +168,18 @@ public class MenuPrincipal {
         tv.setPulgadas(pulgadas);
 
         System.out.println("Introduzca el tipo: ");
-        
-        try {
-            tv.setTipo(sc.nextLine());
-        } catch (Exception e) {
-            System.err.println("Tipo de televisor INVÁLIDO");
+
+        int intentosRestantes = 4;
+        while (intentosRestantes > 0) {
+            try {
+                tv.setTipo(sc.nextLine());
+                intentosRestantes = 0;
+            } catch (Exception e) {
+                System.err.println("Tipo de televisor INVÁLIDO");
+                intentosRestantes--;
+            }
         }
-        
+
         return tv;
     }
 
@@ -207,7 +211,7 @@ public class MenuPrincipal {
     }
 
     private void menuClientes() {
-          Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         try {
             int opcionClientes = -1;
@@ -220,22 +224,16 @@ public class MenuPrincipal {
 
                 opcionClientes = sc.nextInt();
                 if (opcionClientes == 1) {
-                   
-                    
+
                 }
                 if (opcionClientes == 2) {
-                   
-                    
 
                 }
                 if (opcionClientes == 3) {
-                
-                    
 
                 }
                 if (opcionClientes == 4) {
-                   
-                    
+
                 }
 
             } while (opcionClientes != 0);
@@ -244,10 +242,7 @@ public class MenuPrincipal {
             this.menuClientes();
         }
 
-
     }
-  
-   
 
     private void menuVentas() {
         Scanner sc = new Scanner(System.in);
@@ -301,9 +296,7 @@ public class MenuPrincipal {
 
         Date fec = null;
 
-
         fec = sdf.parse(fecha);
-
 
         return fec;
     }
