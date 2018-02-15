@@ -125,6 +125,10 @@ public class MenuPrincipal {
 
         } while (opcion != 1 && opcion != 2 && opcion != 3);
 
+        if (producto != null) {
+            System.out.println("Creado producto con ID: " + producto.getId());
+        }
+
         return producto;
     }
 
