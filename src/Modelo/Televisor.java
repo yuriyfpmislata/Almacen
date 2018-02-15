@@ -1,6 +1,4 @@
-
 package Modelo;
-
 
 public class Televisor extends Electrodomestico {
 
@@ -10,10 +8,9 @@ public class Televisor extends Electrodomestico {
         LCD,
         OLED
     }
-    
+
     protected double pulgadas;
     protected Tipo tipo;
-    
 
     public Televisor() {
         super();
@@ -21,8 +18,17 @@ public class Televisor extends Electrodomestico {
 
     @Override
     public void setPrecio(double precioBase) {
-     
+        double precioFinal = precioBase;
         
+        if (this.pulgadas > 40) {
+            precioFinal += (precioBase * 0.1);
+        }
+        
+        if (this.tipo == Tipo.PLASMA) {
+            precioFinal -= (precioBase * 0.1);
+        }
+
+        this.precio = precioFinal;
     }
 
     @Override
@@ -44,7 +50,7 @@ public class Televisor extends Electrodomestico {
         return tipo;
     }
 
-    public void setTipo(String tipo) {        
+    public void setTipo(String tipo) {
         this.tipo = Tipo.valueOf(tipo.toUpperCase());
     }
 

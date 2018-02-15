@@ -11,8 +11,17 @@ public class Lavadora extends Electrodomestico {
     
     @Override
     public void setPrecio(double precioBase){
-     
+        double precioFinal = precioBase;
         
+        if (this.revoluciones > 500) {
+            precioFinal += (precioBase * 0.1);
+        }
+        
+        if (this.carga < 8) {
+            precioFinal -= (precioBase * 0.15);
+        }
+        
+        this.precio = precioFinal;
     }
 
     public int getRevoluciones() {

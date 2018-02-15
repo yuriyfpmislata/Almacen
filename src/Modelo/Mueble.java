@@ -28,7 +28,17 @@ public class Mueble extends Producto {
 
     @Override
     public void setPrecio(double precioBase) {
-  
+        double precioFinal = precioBase;
+        
+        if (this.tipoMadera == Madera.ROBLE) {
+            precioFinal += (precioBase * 0.1);
+        }
+        
+        if (this.tipoMadera == Madera.PINO) {
+            precioFinal -= (precioBase * 0.15);
+        }
+        
+        this.precio = precioFinal;
     }
 
     public Date getAnyoFab() {
