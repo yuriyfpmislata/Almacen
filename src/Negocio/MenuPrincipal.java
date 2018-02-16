@@ -234,12 +234,21 @@ public class MenuPrincipal {
                 if (opcionClientes == 2) {
                     System.out.println("Introduzca el número de cliente: ");
                     int num = sc.nextInt();
-                    servicio.eliminarCliente(num);
+                    try {
+                        servicio.eliminarCliente(num);
+                    } catch (RuntimeException e) {
+                        System.err.println(e.getMessage());
+                    }
                 }
                 if (opcionClientes == 3) {
                     System.out.println("Introduzca el número de cliente: ");
                     int ncliente = sc.nextInt();
-                    System.out.println(servicio.buscarCliente(ncliente));
+                    Cliente resultado = servicio.buscarCliente(ncliente);
+                    if (resultado != null) {
+                        System.out.println(resultado);
+                    } else {
+                        System.err.println("No existe ningun cliente con ese Id");
+                    }
                 }
                 if (opcionClientes == 4) {
                     System.out.println(servicio.imprimirTodosClientes());
@@ -294,14 +303,35 @@ public class MenuPrincipal {
         return cliente;
     }
 
+    public char calcularLetraDNI(int dni) {
+        char[] letras = {'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'};
+
+        return letras[dni % letras.length];
+    }
+
     public Particular pedirParticular() {
         Scanner sc = new Scanner(System.in);
-        String dni;
+        String dni = "";
+        boolean dniInvalido = true;
 
         Particular particular = null;
 
-        System.out.println("Introduzca el DNI: ");
-        dni = sc.nextLine();
+        while (dniInvalido) {
+            System.out.println("Introduzca el DNI [sin la letra]: ");
+            dni = sc.nextLine();
+
+            try {
+                if (dni.length() != 8) {
+                    throw new Exception("Longitud inválida del DNI introducido");
+                }
+                // el dni es valido si no se ha lanzado excepcion (saltado al catch)
+                dniInvalido = false;
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+
+        dni += calcularLetraDNI(Integer.parseInt(dni));
 
         particular = new Particular();
         particular.setDni(dni);
@@ -320,12 +350,12 @@ public class MenuPrincipal {
 
         System.out.println("Introduzca el CIF: ");
         cif = sc.nextLine();
-        
+
         tipoMayorista = pedirTipoMayorista();
-        
+
         System.out.println("Introduzca el descuento: ");
         descuento = Double.parseDouble(sc.nextLine());
-        
+
         mayorista = new Mayorista();
         mayorista.setCif(cif);
         mayorista.setTipoMayorista(tipoMayorista);
@@ -336,7 +366,7 @@ public class MenuPrincipal {
 
     public Modelo.TipoMayorista pedirTipoMayorista() {
         Modelo.TipoMayorista tipoMayorista = null;
-        
+
         String opcion;
         Scanner sc = new Scanner(System.in);
 
@@ -355,7 +385,7 @@ public class MenuPrincipal {
         if (opcion.equals("2")) {
             tipoMayorista = Modelo.TipoMayorista.TIENDA;
         }
-        
+
         return tipoMayorista;
     }
 

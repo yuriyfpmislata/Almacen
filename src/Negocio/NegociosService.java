@@ -81,7 +81,6 @@ public class NegociosService {
 
     }
 
-
     public String buscarProducto(int np) throws Exception {
         Producto producto = null;
         for (int i = 0; i < productos.size(); i++) {
@@ -175,10 +174,15 @@ public class NegociosService {
                 }
             }
 
+            if (clienteBorrar == null) {
+                // hacemos saltar una excepcion que nos lleva directamente al catch
+                throw new Exception("No existe ningun cliente con ese Id");
+            }
+
             clientes.remove(clienteBorrar);
 
         } catch (Exception e) {
-            throw new RuntimeException("imposible eliminar cliente");
+            throw new RuntimeException(e.getMessage());
         }
 
     }
