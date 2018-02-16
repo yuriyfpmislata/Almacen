@@ -321,8 +321,34 @@ public class MenuPrincipal {
             dni = sc.nextLine();
 
             try {
-                if (dni.length() != 8) {
+                if (dni.length() < 8) {
+                    // longitud < 8 -> insuficiente
                     throw new Exception("Longitud inválida del DNI introducido");
+                } else if (dni.length() == 8) {
+                    // DNI sin letra -> calcular letra
+                    int dniComoNumero;
+                    
+                    // comprobar si la cadena contiene solo numeros
+                    try {
+                        dniComoNumero = Integer.parseInt(dni);
+                    } catch (Exception e) {
+                        throw new Exception("El DNI no puede contener letras");
+                    }
+
+                    dni += calcularLetraDNI(dniComoNumero);
+                } else if (dni.length() > 8) {
+                    // posible DNI con letra -> cortar y calcular letra de todos modos
+                    String trozo8 = dni.substring(0, 8);
+                    int dniComoNumero;
+                    
+                    // comprobar si la cadena contiene solo numeros
+                    try {
+                        dniComoNumero = Integer.parseInt(trozo8);
+                    } catch (Exception e) {
+                        throw new Exception("El DNI debe empezar por 8 números");
+                    }
+                    
+                    dni = trozo8 + calcularLetraDNI(dniComoNumero);
                 }
                 // el dni es valido si no se ha lanzado excepcion (saltado al catch)
                 dniInvalido = false;
@@ -330,8 +356,6 @@ public class MenuPrincipal {
                 System.err.println(e.getMessage());
             }
         }
-
-        dni += calcularLetraDNI(Integer.parseInt(dni));
 
         particular = new Particular();
         particular.setDni(dni);
