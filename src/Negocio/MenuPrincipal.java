@@ -9,8 +9,8 @@ import Modelo.Producto;
 import Modelo.Televisor;
 import Modelo.TipoMayorista;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class MenuPrincipal {
@@ -458,15 +458,15 @@ public class MenuPrincipal {
 
     }
 
-    private Date validarFecha(String fecha) throws ParseException {
-        SimpleDateFormat sdf;
+    private LocalDate validarFecha(String fecha) throws ParseException {
+        DateTimeFormatter formateador;
 
-        sdf = new SimpleDateFormat("dd/MM/yyyy");
+        formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        Date fec = null;
-
-        fec = sdf.parse(fecha);
-
+        LocalDate fec = null;
+        
+        fec = LocalDate.parse(fecha, formateador);
+        
         return fec;
     }
 

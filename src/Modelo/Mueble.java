@@ -1,7 +1,7 @@
 package Modelo;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Mueble extends Producto {
 
@@ -9,7 +9,7 @@ public class Mueble extends Producto {
         PINO, ROBLE, HAYA
     };
 
-    private Date anyoFab;
+    private LocalDate anyoFab;
     private Madera tipoMadera;
     private String estilo;
 
@@ -41,11 +41,11 @@ public class Mueble extends Producto {
         this.precio = precioFinal;
     }
 
-    public Date getAnyoFab() {
+    public LocalDate getAnyoFab() {
         return anyoFab;
     }
 
-    public void setAnyoFab(Date anyoFab) {
+    public void setAnyoFab(LocalDate anyoFab) {
         this.anyoFab = anyoFab;
     }
 
