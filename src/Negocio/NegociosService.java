@@ -82,18 +82,19 @@ public class NegociosService {
 
     }
 
-    public String buscarProducto(int np) throws Exception {
+    public Producto buscarProducto(int np) throws Exception {
         Producto producto = null;
         for (int i = 0; i < productos.size(); i++) {
             if (productos.get(i).getId() == np) {
                 producto = productos.get(i);
+                break;
             }
         }
 
         if (producto == null) {
             throw new Exception("El producto no existe.");
         }
-        return producto.imprimirProducto();
+        return producto;
     }
 
     public Cliente buscarCliente(int numeroCliente) {
@@ -102,19 +103,22 @@ public class NegociosService {
         for (Cliente c : clientes) {
             if (c.getIdCliente() == numeroCliente) {
                 cliente = c;
+                break;
             }
         }
 
         return cliente;
     }
 
-    public void buscarVenta(int nv) {
+    public Venta buscarVenta(int nv) {
+        Venta venta = null;
+
         try {
 
-            Venta venta = null;
             for (int i = 0; i < ventas.size(); i++) {
                 if (ventas.get(i).getIdVenta() == nv) {
                     venta = ventas.get(i);
+                    break;
                 }
             }
             if (venta == null) {
@@ -124,6 +128,8 @@ public class NegociosService {
         } catch (Exception e) {
             throw new RuntimeException("No ha sido posible imprimir la venta" + e.getMessage());
         }
+
+        return venta;
     }
 
     public void elimninarProducto(int nproducto) {
@@ -215,7 +221,7 @@ public class NegociosService {
 
     public String imprimirTodosProductos() {
         DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");
-        
+
         String res = "";
         if (productos.isEmpty()) {
             res = "No hay productos introducidos.";

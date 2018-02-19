@@ -80,7 +80,7 @@ public class MenuPrincipal {
                 if (opcionProductos == 3) {
                     System.out.println("Introduzca el número de producto: ");
                     int nprod = sc.nextInt();
-                    System.out.println(servicio.buscarProducto(nprod));
+                    System.out.println(servicio.buscarProducto(nprod).imprimirProducto());
                 }
                 if (opcionProductos == 4) {
                     System.out.println(servicio.imprimirTodosProductos());
