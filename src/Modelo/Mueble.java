@@ -1,7 +1,7 @@
 package Modelo;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Mueble extends Producto {
 
@@ -20,8 +20,8 @@ public class Mueble extends Producto {
 
     @Override
     public String imprimirProducto() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMMM/yy");
-        String res = super.imprimirProducto() + "el año de fabricación: " + sdf.format(anyoFab) + " el tipo de madera: " + this.tipoMadera + "el estilo: " + getEstilo();
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");
+        String res = super.imprimirProducto() + "el año de fabricación: " + anyoFab.format(formateador) + " el tipo de madera: " + this.tipoMadera + "el estilo: " + getEstilo();
         return res;
 
     }

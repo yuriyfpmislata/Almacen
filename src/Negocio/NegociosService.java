@@ -8,6 +8,7 @@ import Modelo.Particular;
 import Modelo.Producto;
 import Modelo.Televisor;
 import Modelo.Venta;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -213,6 +214,8 @@ public class NegociosService {
     }
 
     public String imprimirTodosProductos() {
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");
+        
         String res = "";
         if (productos.isEmpty()) {
             res = "No hay productos introducidos.";
@@ -233,7 +236,7 @@ public class NegociosService {
 
                 if (p instanceof Mueble) {
                     Mueble m = (Mueble) p;
-                    res += "\n ID NOMBRE  PRECIO     AÑO FABRICACION              MADERA  ESTILO" + "\n" + m.getId() + "   " + m.getNombre() + "   " + m.getPrecio() + "  " + m.getAnyoFab() + "   " + m.getTipoMadera() + "     " + m.getEstilo();
+                    res += "\n ID NOMBRE  PRECIO     AÑO FABRICACION              MADERA  ESTILO" + "\n" + m.getId() + "   " + m.getNombre() + "   " + m.getPrecio() + "  " + m.getAnyoFab().format(formateador) + "   " + m.getTipoMadera() + "     " + m.getEstilo();
 
                 }
             }

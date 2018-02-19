@@ -141,7 +141,7 @@ public class MenuPrincipal {
         System.out.println("Introduzca el estilo:");
         m.setEstilo(sc.nextLine());
 
-        System.out.println("Introduzca la fecha (dd/MM/yyyy): ");
+        System.out.println("Introduzca la fecha (dd/mes/yyyy): ");
         m.setAnyoFab(this.validarFecha(sc.nextLine()));
 
         return m;
@@ -461,7 +461,7 @@ public class MenuPrincipal {
     private LocalDate validarFecha(String fecha) throws ParseException {
         DateTimeFormatter formateador;
 
-        formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        formateador = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");
 
         LocalDate fec = null;
         
