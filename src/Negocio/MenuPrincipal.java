@@ -9,8 +9,10 @@ import Modelo.Producto;
 import Modelo.Televisor;
 import Modelo.TipoMayorista;
 import java.text.ParseException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class MenuPrincipal {
@@ -142,8 +144,17 @@ public class MenuPrincipal {
         m.setEstilo(sc.nextLine());
 
         System.out.println("Introduzca la fecha (dd/mes/yyyy): ");
-        m.setAnyoFab(this.validarFecha(sc.nextLine()));
-
+        
+        try {
+            String entradaFecha = sc.nextLine();
+            this.validarFecha(entradaFecha);
+            
+            m.setAnyoFab(this.validarFecha(entradaFecha));
+        } catch (FormatoFechaErroneo e) {
+            System.err.println(e.getMessage());
+            m.setAnyoFab(LocalDate.now());
+        }
+        
         return m;
 
     }
@@ -465,7 +476,11 @@ public class MenuPrincipal {
 
         LocalDate fec = null;
         
-        fec = LocalDate.parse(fecha, formateador);
+        try {
+            fec = LocalDate.parse(fecha, formateador);
+        } catch (DateTimeParseException e) {
+            throw new FormatoFechaErroneo("Formato de fecha erróneo", "dd/MMMM/yyyy", fecha);
+        }
         
         return fec;
     }
