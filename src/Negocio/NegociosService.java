@@ -87,6 +87,7 @@ public class NegociosService {
         for (int i = 0; i < productos.size(); i++) {
             if (productos.get(i).getId() == np) {
                 producto = productos.get(i);
+                break;
             }
         }
 
@@ -102,6 +103,7 @@ public class NegociosService {
         for (Cliente c : clientes) {
             if (c.getIdCliente() == numeroCliente) {
                 cliente = c;
+                break;
             }
         }
 
@@ -115,6 +117,7 @@ public class NegociosService {
             for (int i = 0; i < ventas.size(); i++) {
                 if (ventas.get(i).getIdVenta() == nv) {
                     venta = ventas.get(i);
+                    break;
                 }
             }
             if (venta == null) {
