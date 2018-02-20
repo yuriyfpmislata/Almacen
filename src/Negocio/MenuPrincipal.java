@@ -4,6 +4,7 @@ import Modelo.Cliente;
 import Modelo.Lavadora;
 import Modelo.Mayorista;
 import Modelo.Mueble;
+import Modelo.Mueble.Madera;
 import Modelo.Particular;
 import Modelo.Producto;
 import Modelo.Televisor;
@@ -204,9 +205,11 @@ public class MenuPrincipal {
 
         do {
             System.out.println("Introduzca el tipo de Madera");
-            System.out.println("1.Pino");
-            System.out.println("2.Roble");
-            System.out.println("3.Haya");
+            
+            int contador = 1;
+            for (Madera tipo : Mueble.Madera.values()) {
+                System.out.println((contador++) + ". " + tipo.toString());
+            }
 
             opcion = sc.nextLine();
 
@@ -406,8 +409,11 @@ public class MenuPrincipal {
 
         do {
             System.out.println("Introduzca el tipo de Mayorista");
-            System.out.println("1.Gran superfície");
-            System.out.println("2.Tienda");
+            
+            int contador = 1;
+            for (TipoMayorista tipo : Modelo.TipoMayorista.values()) {
+                System.out.println((contador++) + ". " + tipo.toString());
+            }
 
             opcion = sc.nextLine();
 
