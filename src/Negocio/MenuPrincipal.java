@@ -200,30 +200,23 @@ public class MenuPrincipal {
 
     private Mueble.Madera pedirMadera() {
         Mueble.Madera m = null;
-        String opcion;
+        int opcion;
         Scanner sc = new Scanner(System.in);
 
         do {
             System.out.println("Introduzca el tipo de Madera");
             
-            int contador = 1;
+            int contador = 0;
             for (Madera tipo : Mueble.Madera.values()) {
                 System.out.println((contador++) + ". " + tipo.toString());
             }
 
-            opcion = sc.nextLine();
+            opcion = Integer.parseInt(sc.nextLine());
 
-        } while (!opcion.equals("1") && !opcion.equals("2") && !opcion.equals("1"));
+        } while (!(opcion < 0) && !(opcion < Mueble.Madera.values().length));
 
-        if (opcion.equals("1")) {
-            m = Mueble.Madera.PINO;
-        }
-        if (opcion.equals("2")) {
-            m = Mueble.Madera.ROBLE;
-        }
-        if (opcion.equals("3")) {
-            m = Mueble.Madera.HAYA;
-        }
+        m = Mueble.Madera.values()[opcion];
+        
         return m;
     }
 
@@ -404,27 +397,22 @@ public class MenuPrincipal {
     public Modelo.TipoMayorista pedirTipoMayorista() {
         Modelo.TipoMayorista tipoMayorista = null;
 
-        String opcion;
+        int opcion;
         Scanner sc = new Scanner(System.in);
 
         do {
             System.out.println("Introduzca el tipo de Mayorista");
             
-            int contador = 1;
+            int contador = 0;
             for (TipoMayorista tipo : Modelo.TipoMayorista.values()) {
                 System.out.println((contador++) + ". " + tipo.toString());
             }
 
-            opcion = sc.nextLine();
-
-        } while (!opcion.equals("1") && !opcion.equals("2"));
-
-        if (opcion.equals("1")) {
-            tipoMayorista = Modelo.TipoMayorista.GRAN_SUPERFICIE;
-        }
-        if (opcion.equals("2")) {
-            tipoMayorista = Modelo.TipoMayorista.TIENDA;
-        }
+            opcion = Integer.parseInt(sc.nextLine());
+                // la opcion NO esta en el rango correcto
+        } while (!(opcion < 0) && !(opcion < Modelo.TipoMayorista.values().length));
+        
+        tipoMayorista = Modelo.TipoMayorista.values()[opcion];
 
         return tipoMayorista;
     }
