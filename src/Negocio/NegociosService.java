@@ -272,8 +272,8 @@ public class NegociosService {
 
         } else {
             for (Venta v : ventas) {
-                res += "\n ID VENTA VENDEDOR  CLIENTE PRODUCTO PRECIO VENTA" + "\n" + v.getIdVenta() + "   " + v.getVendedor() + "   " + v.getCliente().getIdCliente() + "  " + v.getProducto().getId() + "   " + v.getPrecioVenta();
-
+                //res += "\n ID VENTA VENDEDOR  CLIENTE PRODUCTO PRECIO VENTA" + "\n" + v.getIdVenta() + "   " + v.getVendedor() + "   " + v.getCliente().getIdCliente() + "  " + v.getProducto().getId() + "   " + v.getPrecioVenta();
+                res = String.format("\n ID VENTA VENDEDOR  CLIENTE PRODUCTO PRECIO VENTA\n %d   %s   %d  %d   %f", v.getIdVenta(), v.getVendedor(), v.getCliente().getIdCliente(), v.getProducto().getId(), v.getPrecioVenta());
             }
         }
         return res;

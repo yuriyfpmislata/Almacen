@@ -212,7 +212,7 @@ public class MenuPrincipal {
             }
 
             opcion = Integer.parseInt(sc.nextLine());
-
+                // la opcion NO esta en el rango correcto
         } while (!(opcion < 0) && !(opcion < Mueble.Madera.values().length));
 
         m = Mueble.Madera.values()[opcion];
