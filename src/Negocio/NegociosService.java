@@ -67,7 +67,7 @@ public class NegociosService {
 
             Venta v = new Venta();
             v.setCliente(clienteVenta);
-            v.setVendedor(clienteVenta.getNombre());
+            v.setVendedor(vend);
             v.setProducto(productoVenta);
             v.setPrecioVenta(); //calcula el precio de la venta segun el cliente-mayorista
 
