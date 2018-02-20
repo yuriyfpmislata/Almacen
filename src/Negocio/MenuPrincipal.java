@@ -9,7 +9,6 @@ import Modelo.Producto;
 import Modelo.Televisor;
 import Modelo.TipoMayorista;
 import java.text.ParseException;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -463,7 +462,7 @@ public class MenuPrincipal {
             } while (!opcionVentas.equals("0"));
 
         } catch (Exception e) {
-            System.out.println("Opcion no valida");
+            System.out.println("Opcion no valida. " + e.getMessage());
             this.menuVentas();
         }
 

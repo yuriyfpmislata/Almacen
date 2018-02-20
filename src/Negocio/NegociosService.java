@@ -45,25 +45,9 @@ public class NegociosService {
     public void introducirVenta(int ncliente, int nproducto, String vend) {
         try {
 
-            Cliente clienteVenta = null;
-            for (int i = 0; i < clientes.size() && clienteVenta == null; i++) {
-                if (clientes.get(i).getIdCliente() == ncliente) {
-                    clienteVenta = clientes.get(i);
-                }
-            }
-            if (clienteVenta == null) {
-                throw new RuntimeException("El cliente no existe.");
-            }
+            Cliente clienteVenta = buscarCliente(ncliente);
 
-            Producto productoVenta = null;
-            for (int i = 0; i < productos.size() && productoVenta == null; i++) {
-                if (productos.get(i).getId() == nproducto) {
-                    productoVenta = productos.get(i);
-                }
-            }
-            if (productoVenta == null) {
-                throw new RuntimeException("El producto no existe.");
-            }
+            Producto productoVenta = buscarProducto(nproducto);
 
             Venta v = new Venta();
             v.setCliente(clienteVenta);
@@ -77,7 +61,7 @@ public class NegociosService {
             productoVenta.getVentas().add(v);
 
         } catch (Exception e) {
-            throw new RuntimeException("No ha sido posible introducir la venta" + e.getMessage());
+            throw new RuntimeException("No ha sido posible introducir la venta. " + e.getMessage());
         }
 
     }
@@ -100,13 +84,21 @@ public class NegociosService {
     public Cliente buscarCliente(int numeroCliente) {
         Cliente cliente = null;
 
-        for (Cliente c : clientes) {
-            if (c.getIdCliente() == numeroCliente) {
-                cliente = c;
-                break;
+        try {
+            for (Cliente c : clientes) {
+                if (c.getIdCliente() == numeroCliente) {
+                    cliente = c;
+                    break;
+                }
             }
+            
+            if (cliente == null) {
+                throw new Exception("El cliente con id: " + numeroCliente + " no existe");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         }
-
+        
         return cliente;
     }
 
