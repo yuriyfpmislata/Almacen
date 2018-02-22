@@ -78,20 +78,20 @@ public class MenuPrincipal {
 
                 if (opcionProductos == 1) {
                     Producto p = datosProducto();
-                    servicio.introducirProducto(p);
+                    productos.introducirProducto(p);
                 }
                 if (opcionProductos == 2) {
                     System.out.println("Introduzca el número de producto: ");
                     int num = sc.nextInt();
-                    servicio.elimninarProducto(num);
+                    productos.elimninarProducto(num);
                 }
                 if (opcionProductos == 3) {
                     System.out.println("Introduzca el número de producto: ");
                     int nprod = sc.nextInt();
-                    System.out.println(servicio.buscarProducto(nprod).imprimirProducto());
+                    System.out.println(productos.buscarProducto(nprod).imprimirProducto());
                 }
                 if (opcionProductos == 4) {
-                    System.out.println(servicio.imprimirTodosProductos());
+                    System.out.println(productos.imprimirTodosProductos());
                 }
 
             } while (opcionProductos != 0);
@@ -243,13 +243,13 @@ public class MenuPrincipal {
                 opcionClientes = sc.nextInt();
                 if (opcionClientes == 1) {
                     Cliente c = datosCliente();
-                    servicio.introducirCliente(c);
+                    clientes.introducirCliente(c);
                 }
                 if (opcionClientes == 2) {
                     System.out.println("Introduzca el número de cliente: ");
                     int num = sc.nextInt();
                     try {
-                        servicio.eliminarCliente(num);
+                        clientes.eliminarCliente(num);
                     } catch (RuntimeException e) {
                         System.err.println(e.getMessage());
                     }
@@ -257,7 +257,7 @@ public class MenuPrincipal {
                 if (opcionClientes == 3) {
                     System.out.println("Introduzca el número de cliente: ");
                     int ncliente = sc.nextInt();
-                    Cliente resultado = servicio.buscarCliente(ncliente);
+                    Cliente resultado = clientes.buscarCliente(ncliente);
                     if (resultado != null) {
                         System.out.println(resultado);
                     } else {
@@ -265,7 +265,7 @@ public class MenuPrincipal {
                     }
                 }
                 if (opcionClientes == 4) {
-                    System.out.println(servicio.imprimirTodosClientes());
+                    System.out.println(clientes.imprimirTodosClientes());
                 }
 
             } while (opcionClientes != 0);
@@ -445,20 +445,20 @@ public class MenuPrincipal {
                     int np = Integer.parseInt(sc.nextLine());
                     System.out.println("Introduce el nombre del vendedor: ");
                     String v = sc.nextLine();
-                    servicio.introducirVenta(nv, np, v);
+                    ventas.introducirVenta(nv, np, v);
                 }
                 if (opcionVentas.equals("2")) {
                     System.out.println("Introduzca número de venta: ");
                     int nv = Integer.parseInt(sc.nextLine());
-                    servicio.eliminarVenta(nv);
+                    ventas.eliminarVenta(nv);
                 }
                 if (opcionVentas.equals("3")) {
                     System.out.println("Introduzca número de venta: ");
                     int nv = Integer.parseInt(sc.nextLine());
-                    servicio.buscarVenta(nv);
+                    ventas.buscarVenta(nv);
                 }
                 if (opcionVentas.equals("4")) {
-                    System.out.println(servicio.imprimirtodasVentas());
+                    System.out.println(ventas.imprimirtodasVentas());
                 }
 
             } while (!opcionVentas.equals("0"));
