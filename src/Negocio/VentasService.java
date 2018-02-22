@@ -21,7 +21,7 @@ public class VentasService {
         this.productos = productos;
     }
 
-    public List<Venta> getVentas() {
+    private List<Venta> getVentas() {
         return ventas;
     }
 
@@ -94,6 +94,32 @@ public class VentasService {
             throw new RuntimeException("imposible eliminar la venta");
         }
 
+    }
+
+    public void eliminarVentasPorProducto(int nproducto) {
+        //Eliminamos de ventas el producto seleccionado
+        List<Venta> ventasEliminar = new ArrayList();
+
+        for (Venta v : this.getVentas()) {
+            if (v.getProducto().getId() == nproducto) {
+                ventasEliminar.add(v);
+
+            }
+        }
+
+        this.getVentas().removeAll(ventasEliminar);
+    }
+
+    public void eliminarVentasPorCliente(int numCliente) {
+        //Eliminamos las ventas del cliente seleccionado
+        List<Venta> ventasEliminar = new ArrayList();
+        for (Venta v : this.getVentas()) {
+            if (v.getCliente().getIdCliente() == numCliente) {
+                ventasEliminar.add(v);
+
+            }
+        }
+        this.getVentas().removeAll(ventasEliminar);
     }
 
     public String imprimirtodasVentas() {

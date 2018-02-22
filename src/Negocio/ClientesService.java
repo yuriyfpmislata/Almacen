@@ -3,7 +3,6 @@ package Negocio;
 import Modelo.Cliente;
 import Modelo.Mayorista;
 import Modelo.Particular;
-import Modelo.Producto;
 import Modelo.Venta;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ public class ClientesService {
         this.ventas = ventas;
     }
 
-    public List<Cliente> getClientes() {
+    private List<Cliente> getClientes() {
         return clientes;
     }
 
@@ -60,16 +59,8 @@ public class ClientesService {
     public void eliminarCliente(int numCliente) {
         try {
             // Al eliminar un cliente también eliminamos las ventas asociadas a el
-
-            //Eliminamos las ventas del cliente seleccionado
-            List<Venta> ventasEliminar = new ArrayList();
-            for (Venta v : ventas.getVentas()) {
-                if (v.getCliente().getIdCliente() == numCliente) {
-                    ventasEliminar.add(v);
-
-                }
-            }
-            ventas.getVentas().removeAll(ventasEliminar);
+            
+            ventas.eliminarVentasPorCliente(numCliente);
 
             //Eliminamos el cliente
             Cliente clienteBorrar = null;

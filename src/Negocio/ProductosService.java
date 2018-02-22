@@ -1,6 +1,5 @@
 package Negocio;
 
-import Modelo.Cliente;
 import Modelo.Lavadora;
 import Modelo.Mueble;
 import Modelo.Producto;
@@ -25,7 +24,7 @@ public class ProductosService {
         this.ventas = ventas;
     }
 
-    public List<Producto> getProductos() {
+    private List<Producto> getProductos() {
         return productos;
     }
 
@@ -56,15 +55,8 @@ public class ProductosService {
     public void elimninarProducto(int nproducto) {
         try {
             Producto productoEliminar = null;
-            //Eliminamos de ventas el producto seleccionado
-            List<Venta> ventasEliminar = new ArrayList();
-            for (Venta v : ventas.getVentas()) {
-                if (v.getProducto().getId() == nproducto) {
-                    ventasEliminar.add(v);
-
-                }
-            }
-            ventas.getVentas().removeAll(ventasEliminar);
+            
+            ventas.eliminarVentasPorProducto(nproducto);
 
             //Eliminamos el producto
             for (Producto p : productos) {
