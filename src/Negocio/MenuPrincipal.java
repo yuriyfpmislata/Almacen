@@ -17,10 +17,18 @@ import java.util.Scanner;
 
 public class MenuPrincipal {
 
-    NegociosService servicio;
-
+    ProductosService productos;
+    ClientesService clientes;
+    VentasService ventas;
+    
     MenuPrincipal() {
-        servicio = new NegociosService();
+        this.productos = new ProductosService();
+        this.clientes = new ClientesService();
+        this.ventas = new VentasService();
+        
+        this.productos.enlazar(clientes, ventas);
+        this.clientes.enlazar(productos, ventas);
+        this.ventas.enlazar(clientes, productos);
     }
 
     public void inciarAplicacion() {
