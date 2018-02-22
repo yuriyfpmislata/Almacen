@@ -3,7 +3,6 @@ package Negocio;
 import Modelo.Cliente;
 import Modelo.Mayorista;
 import Modelo.Particular;
-import Modelo.Venta;
 import java.util.ArrayList;
 import java.util.List;
 

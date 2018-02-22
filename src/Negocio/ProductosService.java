@@ -4,7 +4,6 @@ import Modelo.Lavadora;
 import Modelo.Mueble;
 import Modelo.Producto;
 import Modelo.Televisor;
-import Modelo.Venta;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;

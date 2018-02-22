@@ -22,6 +22,19 @@ public class MenuPrincipal {
     VentasService ventas;
     
     MenuPrincipal() {
+        /** Planteamiento division servicios
+         * 
+         * Los 3 servicios se crean en menu principal
+         * tras construirse, se enlazan.
+         * 
+         * Cada servicio usa su nombre comun (p.ej "productos") 
+         * como la lista. 
+         * En cambio, usa el nombre comun de otros servicios
+         * como referencia al otro servicio (de forma que pueda llamar a sus metodos).
+         * 
+         * ** Se podría refactorizar llamando listaProductos a la lista propiamente dicha.
+         * 
+         */
         this.productos = new ProductosService();
         this.clientes = new ClientesService();
         this.ventas = new VentasService();
