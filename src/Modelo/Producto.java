@@ -19,8 +19,12 @@ public abstract  class Producto {
         contador++;
     }
 
-    public List<Venta> getVentas() {
+    private List<Venta> getVentas() {
         return ventas;
+    }
+    
+    public void añadirVenta(Venta v) {
+        this.ventas.add(v);
     }
 
     public void setVentas(List<Venta> ventas) {

@@ -40,8 +40,8 @@ public class VentasService {
 
             ventas.add(v);
 
-            clienteVenta.getCompras().add(v);
-            productoVenta.getVentas().add(v);
+            clienteVenta.añadirCompra(v);
+            productoVenta.añadirVenta(v);
 
         } catch (Exception e) {
             throw new RuntimeException("No ha sido posible introducir la venta. " + e.getMessage());

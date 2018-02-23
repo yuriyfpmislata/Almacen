@@ -42,8 +42,12 @@ public abstract class Cliente {
         this.razonSocial = razonSocial;
     }
 
-    public List<Venta> getCompras() {
+    private List<Venta> getCompras() {
         return compras;
+    }
+    
+    public void añadirCompra(Venta v) {
+        this.compras.add(v);
     }
 
     public void setCompras(List<Venta> compras) {
