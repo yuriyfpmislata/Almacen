@@ -58,7 +58,7 @@ public class ClientesService {
     public void eliminarCliente(int numCliente) {
         try {
             // Al eliminar un cliente también eliminamos las ventas asociadas a el
-            
+
             ventas.eliminarVentasPorCliente(numCliente);
 
             //Eliminamos el cliente

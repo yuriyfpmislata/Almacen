@@ -1,28 +1,26 @@
-
 package Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
 
+public abstract class Producto {
 
-
-public abstract  class Producto {
     protected int id;
     protected String nombre;
     protected double precio;
     protected List<Venta> ventas;
-    protected static int contador=1; 
-    
-    public Producto(){
-        ventas= new ArrayList();
-        this.id=contador;
+    protected static int contador = 1;
+
+    public Producto() {
+        ventas = new ArrayList();
+        this.id = contador;
         contador++;
     }
 
     private List<Venta> getVentas() {
         return ventas;
     }
-    
+
     public void añadirVenta(Venta v) {
         this.ventas.add(v);
     }
@@ -34,8 +32,6 @@ public abstract  class Producto {
     public int getId() {
         return id;
     }
-
-    
 
     public String getNombre() {
         return nombre;
@@ -49,25 +45,16 @@ public abstract  class Producto {
         return precio;
     }
 
-    
-    
     public abstract void setPrecio(double precioBase);
-    
-    
-    
-    public  String imprimirProducto(){
-        String res = "El id es: "+this.id+" el precio: "+this.precio+" del objeto: "+this.nombre;
-        return res;
-    }
-    
-    
-    public static String imprimirNumProductos(){
-        String res = "El número de productos es: "+contador;
+
+    public String imprimirProducto() {
+        String res = "El id es: " + this.id + " el precio: " + this.precio + " del objeto: " + this.nombre;
         return res;
     }
 
-        
+    public static String imprimirNumProductos() {
+        String res = "El número de productos es: " + contador;
+        return res;
     }
-    
-    
 
+}

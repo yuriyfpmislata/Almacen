@@ -54,7 +54,7 @@ public class ProductosService {
     public void elimninarProducto(int nproducto) {
         try {
             Producto productoEliminar = null;
-            
+
             ventas.eliminarVentasPorProducto(nproducto);
 
             //Eliminamos el producto

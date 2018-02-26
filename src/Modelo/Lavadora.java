@@ -1,26 +1,26 @@
-
 package Modelo;
 
-
 public class Lavadora extends Electrodomestico {
+
     int revoluciones;
     double carga;
-    public Lavadora(){
+
+    public Lavadora() {
         super();
     }
-    
+
     @Override
-    public void setPrecio(double precioBase){
+    public void setPrecio(double precioBase) {
         double precioFinal = precioBase;
-        
+
         if (this.revoluciones > 500) {
             precioFinal += (precioBase * 0.1);
         }
-        
+
         if (this.carga < 8) {
             precioFinal -= (precioBase * 0.15);
         }
-        
+
         this.precio = precioFinal;
     }
 
@@ -39,12 +39,11 @@ public class Lavadora extends Electrodomestico {
     public void setCarga(double carga) {
         this.carga = carga;
     }
-    
+
     @Override
-    public String imprimirProducto(){
-        String res = super.imprimirProducto() + "de revoluciones: "+this.revoluciones+ "con carga: "+this.carga;
+    public String imprimirProducto() {
+        String res = super.imprimirProducto() + "de revoluciones: " + this.revoluciones + "con carga: " + this.carga;
         return res;
     }
-    
- 
+
 }

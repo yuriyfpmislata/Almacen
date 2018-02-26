@@ -40,6 +40,4 @@ public class Mayorista extends Cliente {
 
     }
 
- 
-
 }

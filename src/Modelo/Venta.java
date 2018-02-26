@@ -15,7 +15,6 @@ public class Venta {
 
     }
 
-   
     public Cliente getCliente() {
         return cliente;
     }
@@ -52,8 +51,6 @@ public class Venta {
         this.producto = producto;
     }
 
-  
-
     public double getPrecioVenta() {
         return precioVenta;
     }
@@ -62,12 +59,12 @@ public class Venta {
         Double precio = producto.getPrecio();
         if (cliente instanceof Mayorista) {
             Mayorista m = (Mayorista) cliente;
-            precio = precio - (precio * m.getDescuento()/100);
+            precio = precio - (precio * m.getDescuento() / 100);
         }
         this.precioVenta = precio;
     }
-    
-      public String imprimirVenta() {
+
+    public String imprimirVenta() {
         String res = "";
         res = "ID de venta:" + this.getIdVenta() + " , vendedor:" + this.getVendedor() + " , producto:" + this.producto.imprimirProducto();
         return res;

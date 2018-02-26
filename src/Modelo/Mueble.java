@@ -17,7 +17,6 @@ public class Mueble extends Producto {
         super();
     }
 
-
     @Override
     public String imprimirProducto() {
         DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");
@@ -29,15 +28,15 @@ public class Mueble extends Producto {
     @Override
     public void setPrecio(double precioBase) {
         double precioFinal = precioBase;
-        
+
         if (this.tipoMadera == Madera.ROBLE) {
             precioFinal += (precioBase * 0.1);
         }
-        
+
         if (this.tipoMadera == Madera.PINO) {
             precioFinal -= (precioBase * 0.15);
         }
-        
+
         this.precio = precioFinal;
     }
 

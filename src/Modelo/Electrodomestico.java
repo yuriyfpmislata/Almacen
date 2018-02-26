@@ -1,13 +1,12 @@
-
 package Modelo;
 
+public abstract class Electrodomestico extends Producto {
 
-public  abstract class Electrodomestico extends Producto {
     protected String marca;
     protected double tamanyo;
     protected String fabricante;
-    
-    public Electrodomestico(){
+
+    public Electrodomestico() {
         super();
     }
 
@@ -34,13 +33,11 @@ public  abstract class Electrodomestico extends Producto {
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
     }
+
     @Override
-    public String  imprimirProducto(){
-        String res = super.imprimirProducto() + "de marca: "+this.getMarca() + " de tamaño: "+this.tamanyo+ " fabricado por: "+this.getFabricante();
+    public String imprimirProducto() {
+        String res = super.imprimirProducto() + "de marca: " + this.getMarca() + " de tamaño: " + this.tamanyo + " fabricado por: " + this.getFabricante();
         return res;
     }
-    
-    
-}
 
-        
+}

@@ -1,23 +1,22 @@
-
 package Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public abstract class Cliente {
-   protected  int idCliente;
-   protected  String nombre;
-   protected  String razonSocial;
-   protected  List<Venta> compras;
-   private static int numClientes;
-   
-   Cliente(){
-       numClientes++;
-       idCliente=numClientes;
-       compras= new ArrayList();
-   }
+
+    protected int idCliente;
+    protected String nombre;
+    protected String razonSocial;
+    protected List<Venta> compras;
+    private static int numClientes;
+
+    Cliente() {
+        numClientes++;
+        idCliente = numClientes;
+        compras = new ArrayList();
+    }
+
     public int getIdCliente() {
         return idCliente;
     }
@@ -45,7 +44,7 @@ public abstract class Cliente {
     private List<Venta> getCompras() {
         return compras;
     }
-    
+
     public void añadirCompra(Venta v) {
         this.compras.add(v);
     }
@@ -53,13 +52,12 @@ public abstract class Cliente {
     public void setCompras(List<Venta> compras) {
         this.compras = compras;
     }
-   
-   public String imprimir(){
-       //id, nombre, razon social
-      String res = "ID: "+this.idCliente+ " nombre: "+this.nombre+" razón social: "+this.razonSocial;
-      return res;
-       
-   }
 
-    
+    public String imprimir() {
+        //id, nombre, razon social
+        String res = "ID: " + this.idCliente + " nombre: " + this.nombre + " razón social: " + this.razonSocial;
+        return res;
+
+    }
+
 }

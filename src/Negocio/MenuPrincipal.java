@@ -20,25 +20,23 @@ public class MenuPrincipal {
     ProductosService productos;
     ClientesService clientes;
     VentasService ventas;
-    
+
     MenuPrincipal() {
-        /** Planteamiento division servicios
-         * 
-         * Los 3 servicios se crean en menu principal;
-         * tras construirse, se enlazan.
-         * 
-         * Cada servicio usa su nombre comun (p.ej "productos") 
-         * como la lista. 
-         * En cambio, usa el nombre comun de otros servicios
-         * como referencia al otro servicio (de forma que pueda llamar a sus metodos).
-         * 
+        /**
+         * Planteamiento division servicios
+         *
+         * Los 3 servicios se crean en menu principal; tras construirse, se enlazan.
+         *
+         * Cada servicio usa su nombre comun (p.ej "productos") como la lista. En cambio, usa el nombre comun de otros servicios como referencia al otro servicio (de forma que pueda llamar a sus
+         * metodos).
+         *
          * ** Se podría refactorizar llamando listaProductos a la lista propiamente dicha.
-         * 
+         *
          */
         this.productos = new ProductosService();
         this.clientes = new ClientesService();
         this.ventas = new VentasService();
-        
+
         this.productos.enlazar(clientes, ventas);
         this.clientes.enlazar(productos, ventas);
         this.ventas.enlazar(clientes, productos);
@@ -166,17 +164,17 @@ public class MenuPrincipal {
         m.setEstilo(sc.nextLine());
 
         System.out.println("Introduzca la fecha (dd/mes/yyyy): ");
-        
+
         try {
             String entradaFecha = sc.nextLine();
             this.validarFecha(entradaFecha);
-            
+
             m.setAnyoFab(this.validarFecha(entradaFecha));
         } catch (FormatoFechaErroneo e) {
             System.err.println(e.getMessage());
             m.setAnyoFab(LocalDate.now());
         }
-        
+
         return m;
 
     }
@@ -227,18 +225,18 @@ public class MenuPrincipal {
 
         do {
             System.out.println("Introduzca el tipo de Madera");
-            
+
             int contador = 0;
             for (Madera tipo : Mueble.Madera.values()) {
                 System.out.println((contador++) + ". " + tipo.toString());
             }
 
             opcion = Integer.parseInt(sc.nextLine());
-                // la opcion NO esta en el rango correcto
+            // la opcion NO esta en el rango correcto
         } while (!(opcion < 0) && !(opcion < Mueble.Madera.values().length));
 
         m = Mueble.Madera.values()[opcion];
-        
+
         return m;
     }
 
@@ -356,7 +354,7 @@ public class MenuPrincipal {
                 } else if (dni.length() == 8) {
                     // DNI sin letra -> calcular letra
                     int dniComoNumero;
-                    
+
                     // comprobar si la cadena contiene solo numeros
                     try {
                         dniComoNumero = Integer.parseInt(dni);
@@ -369,14 +367,14 @@ public class MenuPrincipal {
                     // posible DNI con letra -> cortar y calcular letra de todos modos
                     String trozo8 = dni.substring(0, 8);
                     int dniComoNumero;
-                    
+
                     // comprobar si la cadena contiene solo numeros
                     try {
                         dniComoNumero = Integer.parseInt(trozo8);
                     } catch (Exception e) {
                         throw new Exception("El DNI debe empezar por 8 números");
                     }
-                    
+
                     dni = trozo8 + calcularLetraDNI(dniComoNumero);
                 }
                 // el dni es valido si no se ha lanzado excepcion (saltado al catch)
@@ -425,16 +423,16 @@ public class MenuPrincipal {
 
         do {
             System.out.println("Introduzca el tipo de Mayorista");
-            
+
             int contador = 0;
             for (TipoMayorista tipo : Modelo.TipoMayorista.values()) {
                 System.out.println((contador++) + ". " + tipo.toString());
             }
 
             opcion = Integer.parseInt(sc.nextLine());
-                // la opcion NO esta en el rango correcto
+            // la opcion NO esta en el rango correcto
         } while (!(opcion < 0) && !(opcion < Modelo.TipoMayorista.values().length));
-        
+
         tipoMayorista = Modelo.TipoMayorista.values()[opcion];
 
         return tipoMayorista;
@@ -491,13 +489,13 @@ public class MenuPrincipal {
         formateador = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");
 
         LocalDate fec = null;
-        
+
         try {
             fec = LocalDate.parse(fecha, formateador);
         } catch (DateTimeParseException e) {
             throw new FormatoFechaErroneo("Formato de fecha erróneo", "dd/MMMM/yyyy", fecha);
         }
-        
+
         return fec;
     }
 
