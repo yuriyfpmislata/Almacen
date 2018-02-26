@@ -24,7 +24,7 @@ public class MenuPrincipal {
     MenuPrincipal() {
         /** Planteamiento division servicios
          * 
-         * Los 3 servicios se crean en menu principal
+         * Los 3 servicios se crean en menu principal;
          * tras construirse, se enlazan.
          * 
          * Cada servicio usa su nombre comun (p.ej "productos") 
@@ -97,6 +97,7 @@ public class MenuPrincipal {
                     System.out.println("Introduzca el número de producto: ");
                     int num = sc.nextInt();
                     productos.elimninarProducto(num);
+                    System.out.println("Se ha eliminado el producto con número: " + num);
                 }
                 if (opcionProductos == 3) {
                     System.out.println("Introduzca el número de producto: ");
@@ -263,6 +264,7 @@ public class MenuPrincipal {
                     int num = sc.nextInt();
                     try {
                         clientes.eliminarCliente(num);
+                        System.out.println("Se ha eliminado el cliente con número: " + num);
                     } catch (RuntimeException e) {
                         System.err.println(e.getMessage());
                     }
